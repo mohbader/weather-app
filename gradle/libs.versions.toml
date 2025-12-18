@@ -8,6 +8,30 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.12.1"
 composeBom = "2024.09.00"
+androidGradlePlugin = "8.12.0"
+ksp = "2.2.21-2.0.4"
+androidxHiltNavigationCompose = "1.2.0"
+material3_activity = "1.11.0"
+constraintlayout = "2.1.4"
+hilt = "2.57.2"
+kotlinxSerializationJson = "1.9.0"
+appcompat = "1.7.1"
+material = "1.13.0"
+androidxComposeCompiler = "1.5.7"
+coil = "2.7.0"
+kotlinxCoroutines = "1.10.2"
+navigation = "2.9.6"
+
+
+
+minSdk = "31"
+targetSdk = "36"
+compileSdk = "36"
+
+versionCode = "1"
+versionName = "1.0.0"
+
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,8 +49,64 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+hilt-compose-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+#comspse
+ui = { group = "androidx.compose.ui", name = "ui" }
+ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+#matrial design 3
+material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "material3_activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+#adaptive nav bar
+adaptive-nav-suite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite" }
+
+kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+#image loading
+coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+#coroutines
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+android-library = { id = "com.android.library", version.ref = "agp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ktor-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+# Plugins defined by this project
+system-plugin-application = { id = "weatherapp.android.application", version = "unspecified" }
+system-application-compose = { id = "weatherapp.android.application.compose", version = "unspecified" }
+system-plugin-compose-library = { id = "weatherapp.android.library.compose", version = "unspecified" }
+system-plugin-library = { id = "weatherapp.android.library", version = "unspecified" }
+system-plugin-feature = { id = "weatherapp.android.feature", version = "unspecified" }
+system-plugin-presentation = { id = "weatherapp.android.presentation", version = "unspecified" }
+system-plugin-hilt = { id = "weatherapp.android.hilt", version = "unspecified" }
+system-plugin-flavors = { id = "weatherapp.app.flavors", version = "unspecified" }
+system-plugin-navigation = { id = "weatherapp.android.navigation", version = "unspecified" }
 
