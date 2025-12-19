@@ -1,25 +1,12 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.system.plugin.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.system.plugin.hilt)
+    alias(libs.plugins.system.plugin.flavors)
 }
 
 android {
-    namespace = "com.weather.app"
-    compileSdk {
-        version = release(36)
-    }
-
-    defaultConfig {
-        applicationId = "com.weather.app"
-        minSdk = 31
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -28,16 +15,9 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-    buildFeatures {
-        compose = true
+        debug {
+            isMinifyEnabled=false
+        }
     }
 }
 
@@ -57,4 +37,5 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
 }

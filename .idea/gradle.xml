@@ -30,6 +30,8 @@
             <option value="$PROJECT_DIR$/core/theme" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/home/data" />
+            <option value="$PROJECT_DIR$/features/home/domain" />
             <option value="$PROJECT_DIR$/features/home/presentation" />
           </set>
         </option>
