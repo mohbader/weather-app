@@ -6,6 +6,7 @@ class AndroidDomainConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply {
                 apply("weatherapp.android.library")
+                apply("weatherapp.android.hilt")
             }
         }
     }

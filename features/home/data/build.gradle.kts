@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.system.plugin.data)
+    alias(libs.plugins.ktor.serialization)
 }
 
 android {

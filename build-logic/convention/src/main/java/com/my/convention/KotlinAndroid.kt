@@ -43,6 +43,7 @@ private fun Project.configureKotlin() {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
+
             val warningsAsErrors: String? by project
 
             allWarningsAsErrors.set(warningsAsErrors.toBoolean())
@@ -50,6 +51,7 @@ private fun Project.configureKotlin() {
                 "-opt-in=kotlin.RequiresOptIn",
                 "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                 "-opt-in=kotlinx.coroutines.FlowPreview",
+                "-Xjvm-default=all"
             )
         }
     }

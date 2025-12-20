@@ -44,6 +44,9 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                     versionCode = libs.versionCode.toInt()
                     versionName = libs.versionName
                 }
+                buildFeatures.apply {
+                    buildConfig = true
+                }
             }
             dependencies {
                 add("androidTestImplementation", kotlin("test"))

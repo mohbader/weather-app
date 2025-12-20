@@ -88,6 +88,8 @@ internal val VersionCatalog.retrofit: Provider<MinimalExternalModuleDependency>
     get() = findLibraryOrThrow("retrofit")
 
 
+internal val VersionCatalog.moshi: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("moshi")
 
 
 private fun VersionCatalog.findLibraryOrThrow(name: String) =

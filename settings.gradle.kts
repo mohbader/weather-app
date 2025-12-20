@@ -25,7 +25,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":app")
 include(":core:theme")
-include(":features:home")
 include(":core:network")
 include(":features:home:presentation")
 include(":features:home:data")

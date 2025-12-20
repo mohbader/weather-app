@@ -1,4 +1,5 @@
 import com.my.convention.libs
+import com.my.convention.moshi
 import com.my.convention.retrofit
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -15,6 +16,7 @@ class AndroidDataConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", project(":core:network"))
                 add("implementation", libs.retrofit)
+                add("implementation", libs.moshi)
             }
         }
     }
