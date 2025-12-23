@@ -1,6 +1,6 @@
 package com.weather.home.data.di
 
-import com.weather.home.data.remotesource.HomeRemoteDataSource
+import com.weather.home.data.remote.HomeRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

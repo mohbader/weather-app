@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.weather.home.presentation"
 }
+
+dependencies{
+    implementation(projects.features.home.domain)
+}

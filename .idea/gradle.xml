@@ -26,6 +26,8 @@
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/datastore" />
+            <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/theme" />
             <option value="$PROJECT_DIR$/features" />
@@ -33,6 +35,10 @@
             <option value="$PROJECT_DIR$/features/home/data" />
             <option value="$PROJECT_DIR$/features/home/domain" />
             <option value="$PROJECT_DIR$/features/home/presentation" />
+            <option value="$PROJECT_DIR$/features/search" />
+            <option value="$PROJECT_DIR$/features/search/data" />
+            <option value="$PROJECT_DIR$/features/search/domain" />
+            <option value="$PROJECT_DIR$/features/search/presentation" />
           </set>
         </option>
       </GradleProjectSettings>

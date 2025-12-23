@@ -1,9 +1,9 @@
 package com.weather.home.domain
 
-import com.weather.home.domain.model.CurrentWeatherModel
-import com.weather.home.domain.model.CurrentWeatherRequest
+import com.weather.home.domain.model.WeatherModel
+import com.weather.home.domain.model.WeatherRequest
 
 interface HomeRepository {
 
-    suspend fun getCurrentWeather(currentWeatherRequest: CurrentWeatherRequest): CurrentWeatherModel
+    suspend fun getWeather(weatherRequest: WeatherRequest): WeatherModel
 }

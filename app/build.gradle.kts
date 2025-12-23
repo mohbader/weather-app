@@ -41,4 +41,24 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    implementation(libs.hilt.compose.navigation)
+
+    //core
+    implementation(projects.core.navigation)
+    implementation(projects.core.network)
+    implementation(projects.core.theme)
+    implementation(projects.core.datastore)
+
+    //features
+    implementation(projects.features.home.presentation)
+    implementation(projects.features.home.domain)
+    implementation(projects.features.home.data)
+
+    implementation(projects.features.search.presentation)
+    implementation(projects.features.search.domain)
+    implementation(projects.features.search.data)
+
+
+
+
 }

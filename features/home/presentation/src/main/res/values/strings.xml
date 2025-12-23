@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="current"> Current Weather</string>
+    <string name="seven_day_forecasting">Next 7 Days</string>
+    <string name="feels_like">Feels Like:</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="humidity">Humidity</string>
+    <string name="uv_index">UV Index</string>
+    <string name="visibility">Visibility</string>
+
+</resources>

@@ -1,5 +1,6 @@
 package com.weather.network
 
+import com.serjltt.moshi.adapters.Wrapped
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -40,6 +41,7 @@ object NetWorkModel {
     @Singleton
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
+            .add(Wrapped.ADAPTER_FACTORY)
             .add(KotlinJsonAdapterFactory())
             .build()
     }

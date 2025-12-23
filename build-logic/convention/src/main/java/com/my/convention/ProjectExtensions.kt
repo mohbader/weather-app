@@ -91,6 +91,38 @@ internal val VersionCatalog.retrofit: Provider<MinimalExternalModuleDependency>
 internal val VersionCatalog.moshi: Provider<MinimalExternalModuleDependency>
     get() = findLibraryOrThrow("moshi")
 
+internal val VersionCatalog.moshiKotlin: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("moshi.kotlin")
+
+internal val VersionCatalog.moshiAdapter: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("moshi.adapters")
+
+internal val VersionCatalog.diInject: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("di.inject")
+
+internal val VersionCatalog.mockk: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("mockk")
+
+internal val VersionCatalog.kotlinxCoroutinesTest: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("kotlinx.coroutines.test")
+
+internal val VersionCatalog.turbine: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("turbine")
+
+internal val VersionCatalog.junitJupiter : Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("junit.jupiter")
+
+internal val VersionCatalog.junitJupiterApi : Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("junit.jupiter.api")
+
+internal val VersionCatalog.junitJupiterEngine : Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("junit.jupiter.engine")
+
+internal val VersionCatalog.androidxJunit : Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("androidx-junit")
+
+internal val VersionCatalog.junit : Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("junit")
 
 private fun VersionCatalog.findLibraryOrThrow(name: String) =
     findLibrary(name)
