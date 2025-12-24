@@ -29,14 +29,11 @@ class SearchViewModel @Inject constructor(
 
     fun searchCity(cityName: String) {
         viewModelScope.launch {
-            _searchState.value = searchCityUseCase(SearchRequestModel(cityName))
-//          runCatching{
-//              searchCityUseCase(SearchRequestModel(cityName))
-//          }.onSuccess {
-//              _searchState.value = searchCityUseCase(SearchRequestModel(cityName))
-//          }.onFailure {
-//
-//            }
+            try {
+                _searchState.value = searchCityUseCase(SearchRequestModel(cityName))
+            }catch (e: Exception){
+                print(e.message)
+            }
         }
     }
 

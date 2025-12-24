@@ -34,7 +34,7 @@ fun WeatherInfoCard(@StringRes title: Int, value: String,    modifier: Modifier 
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceAround
         ) {
 
             Text(

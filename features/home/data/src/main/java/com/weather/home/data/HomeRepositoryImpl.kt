@@ -14,6 +14,7 @@ class HomeRepositoryImpl @Inject constructor(
 ) : HomeRepository {
     override suspend fun getWeather(weatherRequest: WeatherRequest): WeatherModel {
         val mapRequest = mapOf("query" to weatherRequest.cityName, "num_of_days" to "7")
+
         return when (val result = safeApiCall { remoteDataSource.getWeather(mapRequest) }) {
             is ApiResult.Success -> result.data.weatherRemoteResponse?.toDomainModel()
                 ?: throw Exception("No data")

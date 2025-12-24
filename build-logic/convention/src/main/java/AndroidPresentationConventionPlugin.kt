@@ -26,15 +26,12 @@ class AndroidPresentationConventionPlugin : Plugin<Project> {
                 add("implementation", project(":core:theme"))
                 add("implementation", project(":core:navigation"))
                 add("implementation", project(":core:datastore"))
-                add("androidTestImplementation", libs.mockk)
+
+
                 add("testImplementation", libs.mockk)
-                add("androidTestImplementation", libs.kotlinxCoroutinesTest)
-                add("androidTestImplementation", libs.turbine)
-                add("testImplementation", libs.junitJupiter)
-                add("testImplementation", libs.junitJupiterApi)
-                add("testRuntimeOnly", libs.junitJupiterEngine)
-                add("androidTestImplementation", libs.androidxJunit)
-                add("testImplementation", libs.junit)
+                add("testImplementation", libs.kotlinxCoroutinesTest)
+                add("testImplementation", libs.turbine)
+
             }
         }
     }

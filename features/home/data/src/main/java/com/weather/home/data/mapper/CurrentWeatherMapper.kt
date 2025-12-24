@@ -8,8 +8,9 @@ import com.weather.home.domain.model.WeatherModel
 fun WeatherRemoteResponse.toDomainModel(): WeatherModel {
     return WeatherModel(
         weatherConditionModel = this.currentWeather?.firstOrNull()?.toWeatherConditionModel(),
-        forecast = this.forecast?.flatMap { it.hourly.orEmpty() }
-            ?.map { it.toWeatherConditionModel() } ?: emptyList()
+        forecast = this.forecast?.mapNotNull {
+            it.hourly?.firstOrNull()?.copy(time = it.date)?.toWeatherConditionModel()
+        }
     )
 }
 

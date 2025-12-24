@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedCard
@@ -33,15 +32,14 @@ fun ForecastItem(weather: WeatherConditionModel) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 4.dp),
+                .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(0.75f),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                    .fillMaxHeight(),
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
 
@@ -61,21 +59,19 @@ fun ForecastItem(weather: WeatherConditionModel) {
 
             Row(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(0.25f),
+                    .fillMaxHeight(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
 
                 AsyncImage(
+                    modifier = Modifier.padding(horizontal = 4.dp),
                     model = weather.weatherIcon,
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth()
                 )
 
                 Text(
-                    fontWeight = FontWeight.Bold,
                     fontSize = 12.sp,
                     color = Color.LightGray, text = weather.temperature.orEmpty()
                 )
