@@ -86,4 +86,22 @@ class HomeViewModelTest {
         }
     }
 
+    @Test
+    fun `loading is true while fetching weather and false when done`() = runTest {
+
+        coEvery { getCityUseCase() } returns flowOf("Amman")
+        coEvery { getCurrentWeatherUseCase(WeatherRequest("Amman")) } returns mockk()
+
+        viewModel = HomeViewModel(
+            getCurrentWeatherUseCase,
+            getCityUseCase
+        )
+
+        viewModel.homeState.test {
+            awaitItem()
+            assertTrue(awaitItem().isLoading)
+            skipItems(1)
+            assertFalse(awaitItem().isLoading)
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.weather.home.presentation
 
 import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,14 +35,14 @@ fun HomeScreen(
     val cityName = uiState.cityName
     val context = LocalContext.current
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()) {
         uiState.weather?.let {
             HomeScreenTab(weatherModel = it, cityName)
         }
 
         if (uiState.isLoading) {
             CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.Center)
             )
         }
 
