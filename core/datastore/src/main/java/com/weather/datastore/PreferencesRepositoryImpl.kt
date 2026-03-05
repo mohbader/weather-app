@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.weather.datastore.usecases.CityNameNotFoundException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -18,22 +19,6 @@ internal class PreferencesRepositoryImpl @Inject constructor(
         val SELECTED_CITY = stringPreferencesKey("selected_city")
         val IS_CITY_SAVED = booleanPreferencesKey("is_city_saved")
     }
-
-//    val selectedCity: Flow<String?> = dataStore.data
-//        .map { preferences ->
-//            preferences[PreferencesKeys.SELECTED_CITY]
-//        }
-//
-//    val temperatureUnit: Flow<Boolean> = dataStore.data
-//        .map { preferences ->
-//            preferences[PreferencesKeys.IS_CITY_SAVED] ?: false
-//        }
-//
-//    suspend fun saveSelectedCity(city: String) {
-//        dataStore.edit { preferences ->
-//            preferences[PreferencesKeys.SELECTED_CITY] = city
-//        }
-//    }
 
     suspend fun isCitySaved(isCitySaved: Boolean) {
         dataStore.edit { preferences ->
@@ -54,13 +39,14 @@ internal class PreferencesRepositoryImpl @Inject constructor(
         isCitySaved(true)
     }
 
-    override  fun getCityName(): Flow<String?> =
+    override fun getCityName(): Flow<String> =
         dataStore.data
             .map { preferences ->
                 preferences[PreferencesKeys.SELECTED_CITY]
+                    ?: throw CityNameNotFoundException()
             }
 
-    override  fun isCitySaved(): Flow<Boolean> =
+    override fun isCitySaved(): Flow<Boolean> =
         dataStore.data
             .map { preferences ->
                 preferences[PreferencesKeys.IS_CITY_SAVED] ?: false

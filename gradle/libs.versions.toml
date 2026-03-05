@@ -24,6 +24,8 @@ navigation = "2.9.6"
 httpClint = "4.12.0"
 retrofit = "2.9.0"
 
+composeTracing = "1.0.0-alpha01"
+
 minSdk = "31"
 targetSdk = "36"
 compileSdk = "36"
@@ -32,12 +34,12 @@ versionCode = "1"
 versionName = "1.0.0"
 
 moshi = "1.15.2"
-moshiLazy="2.2"
+moshiLazy = "2.2"
 diInject = "1"
-dataStore="1.2.0"
+dataStore = "1.2.0"
 junitJupiter = "6.0.1"
-mockk="1.14.7"
-turbine="1.2.1"
+mockk = "1.14.7"
+turbine = "1.2.1"
 junitJupiterVersion = "5.14.0"
 
 [libraries]
@@ -101,16 +103,18 @@ retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter
 
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
-moshi-adapters = { group = "com.serjltt.moshi",name= "moshi-lazy-adapters", version.ref = "moshiLazy" }
+moshi-adapters = { group = "com.serjltt.moshi", name = "moshi-lazy-adapters", version.ref = "moshiLazy" }
 
 di-inject = { module = "javax.inject:javax.inject", version.ref = "diInject" }
 
 datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
 
+compose-tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "composeTracing" }
+
 #test
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
-turbine ={group="app.cash.turbine",name="turbine",version.ref="turbine"}
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
 junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junitJupiter" }
 junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junitJupiter" }

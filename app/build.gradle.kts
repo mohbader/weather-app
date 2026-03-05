@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    buildFeatures{
+    buildFeatures {
         buildConfig = true
     }
     buildTypes {
@@ -19,7 +19,7 @@ android {
             )
         }
         debug {
-            isMinifyEnabled=false
+            isMinifyEnabled = false
         }
     }
 }
@@ -58,7 +58,6 @@ dependencies {
     implementation(projects.features.search.domain)
     implementation(projects.features.search.data)
 
-
-
+    implementation(libs.compose.tracing)
 
 }
