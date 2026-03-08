@@ -57,6 +57,9 @@ internal val VersionCatalog.hiltAndroid: Provider<MinimalExternalModuleDependenc
     get() = findLibraryOrThrow("hilt.android")
 internal val VersionCatalog.hiltCompiler: Provider<MinimalExternalModuleDependency>
     get() = findLibraryOrThrow("hilt.compiler")
+
+internal val VersionCatalog.hiltWork: Provider<MinimalExternalModuleDependency>
+    get() = findLibraryOrThrow("hilt.work")
 internal val VersionCatalog.composeNav: Provider<MinimalExternalModuleDependency>
     get() = findLibraryOrThrow("compose.navigation")
 

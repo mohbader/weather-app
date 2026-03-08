@@ -7,6 +7,7 @@ android {
     namespace = "com.weather.home.presentation"
 }
 
-dependencies{
+dependencies {
     implementation(projects.features.home.domain)
+    implementation(projects.core.worker)
 }

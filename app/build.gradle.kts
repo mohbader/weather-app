@@ -43,11 +43,15 @@ dependencies {
 
     implementation(libs.hilt.compose.navigation)
 
+    //hilt worker
+    implementation(libs.hilt.work)
+
     //core
     implementation(projects.core.navigation)
     implementation(projects.core.network)
     implementation(projects.core.theme)
     implementation(projects.core.datastore)
+    implementation(projects.core.worker)
 
     //features
     implementation(projects.features.home.presentation)

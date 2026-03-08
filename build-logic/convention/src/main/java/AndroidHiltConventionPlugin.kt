@@ -1,6 +1,7 @@
 
 import com.my.convention.hiltAndroid
 import com.my.convention.hiltCompiler
+import com.my.convention.hiltWork
 import com.my.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -16,6 +17,7 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
 
             dependencies {
                 "implementation"(libs.hiltAndroid)
+                "implementation"(libs.hiltWork)
                 "ksp"(libs.hiltCompiler)
             }
 

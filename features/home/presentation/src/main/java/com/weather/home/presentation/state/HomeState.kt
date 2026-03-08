@@ -6,5 +6,6 @@ data class HomeState(
     val weather: WeatherModel? = null,
     val cityName: String? = null,
     val isLoading: Boolean = true,
+    val selectedTabIndex: Int = 0,
     val errorMessage: String? = null
 )
