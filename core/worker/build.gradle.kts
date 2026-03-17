@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.system.plugin.library)
-    alias(libs.plugins.system.plugin.hilt)
+    alias(libs.plugins.system.plugin.presentation)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {

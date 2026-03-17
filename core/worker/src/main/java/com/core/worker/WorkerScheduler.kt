@@ -26,7 +26,7 @@ class WorkerScheduler @Inject constructor(
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
-        val request = PeriodicWorkRequestBuilder<WeatherApiUpdate>(1, TimeUnit.HOURS)
+        val request = PeriodicWorkRequestBuilder<WeatherApiUpdate>(1, TimeUnit.MINUTES)
             .setConstraints(constraints)
             .addTag(WeatherApiUpdate.WORK_TAG)
             .setInputData(inputData)

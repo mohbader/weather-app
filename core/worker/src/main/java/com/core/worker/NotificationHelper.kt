@@ -3,9 +3,7 @@ package com.core.worker
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
@@ -13,7 +11,6 @@ import androidx.core.app.NotificationManagerCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.jvm.java
 
 @Singleton
 class NotificationHelper @Inject constructor(
@@ -51,7 +48,6 @@ class NotificationHelper @Inject constructor(
         )
     }
 
-    // ─── Show notification based on data ───────────────────────────────────
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     fun showUpdateNotification(response: NotificationModel) {
 
@@ -65,7 +61,7 @@ class NotificationHelper @Inject constructor(
             .setContentTitle(response.title)
             .setContentText(response.message)
             .setStyle(
-                NotificationCompat.BigTextStyle()   // expand on long messages
+                NotificationCompat.BigTextStyle()
                     .bigText(response.message)
             )
             .setPriority(

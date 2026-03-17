@@ -2,7 +2,6 @@ package com.weather.home.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.core.worker.WorkerScheduler
 import com.weather.datastore.usecases.GetCityUseCase
 import com.weather.home.domain.model.WeatherRequest
 import com.weather.home.domain.usecase.GetCurrentWeatherUseCase
@@ -21,7 +20,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getCityUseCase: GetCityUseCase,
-    private val workerScheduler: WorkerScheduler
 ) : ViewModel() {
 
     private val _homeState = MutableStateFlow(HomeState())
@@ -56,7 +54,6 @@ class HomeViewModel @Inject constructor(
                 }
                 .collect { cityName ->
                     _homeState.update { it.copy(cityName = cityName) }
-                    workerScheduler.scheduleHourlyWork(cityName)
                     getWeather(cityName)
                 }
         }

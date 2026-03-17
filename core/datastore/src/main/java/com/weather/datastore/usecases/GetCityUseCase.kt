@@ -4,11 +4,11 @@ import com.weather.datastore.PreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCityUseCase @Inject  constructor(
-     val preferencesRepository: PreferencesRepository
+class GetCityUseCase @Inject constructor(
+    private val preferencesRepository: PreferencesRepository
 ) {
 
-    suspend operator fun invoke(): Flow<String> {
+     operator fun invoke(): Flow<String> {
         return preferencesRepository.getCityName()
     }
 }

@@ -1,5 +1,6 @@
 package com.weather.presentation
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.weather.datastore.usecases.SaveCityUseCase
@@ -58,8 +59,9 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun saveCity(cityName: String) {
-        if(cityName.isBlank().not()) {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    internal fun saveCity(cityName: String) {
+        if (cityName.isNotEmpty()) {
             viewModelScope.launch {
                 saveCityUseCase(cityName)
             }
@@ -89,7 +91,8 @@ class SearchViewModel @Inject constructor(
             }.launchIn(viewModelScope)
     }
 
-    private fun searchCity(cityName: String) = viewModelScope.launch {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    internal fun searchCity(cityName: String) = viewModelScope.launch {
         _state.update {
             it.copy(
                 isLoading = true
