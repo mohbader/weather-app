@@ -7,7 +7,7 @@ import com.android.build.api.dsl.ProductFlavor
 
 
 enum class FlavorDimension {
-    contentType
+    CONTENT_TYPE
 }
 
 enum class AppFlavor(
@@ -16,20 +16,20 @@ enum class AppFlavor(
     val versionNameSuffix: String? = null
 ) {
 
-    DEVLOPMENT(
-        FlavorDimension.contentType,
+    DEVELOPMENT(
+        FlavorDimension.CONTENT_TYPE,
         applicationIdSuffix = ".dev",
         versionNameSuffix = "-dev"
     ),
 
     UAT(
-        FlavorDimension.contentType,
+        FlavorDimension.CONTENT_TYPE,
         applicationIdSuffix = ".uat",
         versionNameSuffix = "-uat"
     ),
 
     PRODUCTION(
-        FlavorDimension.contentType
+        FlavorDimension.CONTENT_TYPE
     )
 
 }
@@ -39,7 +39,7 @@ fun configFlavor(
     flavorConfigurationBlock: ProductFlavor.(flavor: AppFlavor) -> Unit = {}
 ) {
     commonExtension.apply {
-        flavorDimensions += FlavorDimension.contentType.name
+        flavorDimensions += FlavorDimension.CONTENT_TYPE.name
         productFlavors {
             AppFlavor.values().forEach { flavor ->
                 create(flavor.name.lowercase()) {

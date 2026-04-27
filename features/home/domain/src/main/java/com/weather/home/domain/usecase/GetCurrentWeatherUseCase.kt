@@ -6,7 +6,7 @@ import com.weather.home.domain.model.WeatherRequest
 import javax.inject.Inject
 
 
-class GetCurrentWeatherUseCase @Inject constructor(
+class GetCurrentWeatherUseCase @Inject  constructor(
     private val homeRepository: HomeRepository
 ) {
     suspend operator fun invoke(weatherRequest: WeatherRequest): WeatherModel {

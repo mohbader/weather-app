@@ -1,11 +1,9 @@
 package com.weather.home.presentation.ui
 
-import android.provider.CalendarContract
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -37,13 +35,12 @@ fun CurrentConditionScreen(weather: WeatherConditionModel, cityName: String) {
         OutlinedCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.5f)
-                .padding(vertical = 4.dp),
+                .padding(4.dp),
             border = BorderStroke(1.dp, Color.LightGray),
             shape = RoundedCornerShape(3.dp),
         ) {
             Column(
-                modifier = Modifier.fillMaxSize().padding(16.dp),
+                modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
@@ -80,8 +77,7 @@ fun CurrentConditionScreen(weather: WeatherConditionModel, cityName: String) {
         }
 
         Row(
-            modifier = Modifier
-                .fillMaxHeight(0.25f),
+
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             WeatherInfoCard(
@@ -97,8 +93,6 @@ fun CurrentConditionScreen(weather: WeatherConditionModel, cityName: String) {
         }
 
         Row(
-            modifier = Modifier
-                .fillMaxHeight(0.25f),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             WeatherInfoCard(

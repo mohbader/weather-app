@@ -13,10 +13,13 @@ import io.mockk.unmockkAll
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertTrue
 
 class HomeViewModelTest {
 
@@ -34,6 +37,7 @@ class HomeViewModelTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
+        viewModel = HomeViewModel(getCurrentWeatherUseCase, getCityUseCase)
     }
 
     @After
@@ -41,28 +45,27 @@ class HomeViewModelTest {
         unmockkAll()
     }
 
+
     @Test
     fun `getCityName should update cityName in state`() = runTest {
-        val cityFlow = flowOf("Amman")
+        val cityName = "Amman"
+        val cityFlow = flowOf(cityName)
         val fakeWeather = mockk<WeatherModel>()
+
         coEvery { getCityUseCase() } returns cityFlow
-
-        coEvery {
-            getCurrentWeatherUseCase(WeatherRequest("Amman"))
-        } returns fakeWeather
-
-        viewModel = HomeViewModel(
-            getCurrentWeatherUseCase,
-            getCityUseCase
-        )
+        coEvery { getCurrentWeatherUseCase(WeatherRequest(cityName)) } returns fakeWeather
 
         viewModel.homeState.test {
+            val initialState = awaitItem()
+            assertTrue(initialState.isLoading)
+            assertNull(initialState.cityName)
 
-            skipItems(3)
+            val cityState = awaitItem()
+            assertEquals(cityName, cityState.cityName)
 
-            val weatherResult = awaitItem()
-            assertEquals(fakeWeather, weatherResult.weather)
-            assertFalse(weatherResult.isLoading)
+            val weatherState = awaitItem()
+            assertEquals(fakeWeather, weatherState.weather)
+            assertFalse(weatherState.isLoading)
         }
     }
 
@@ -74,11 +77,16 @@ class HomeViewModelTest {
         coEvery { getCityUseCase() } returns flowOf(cityName)
         coEvery { getCurrentWeatherUseCase(any()) } throws Exception(errorMessage)
 
-        viewModel = HomeViewModel(getCurrentWeatherUseCase, getCityUseCase)
 
         viewModel.homeState.test {
+            val initialState = awaitItem()
+            assertTrue(initialState.isLoading)
+            assertNull(initialState.cityName)
 
-            skipItems(3)
+            val cityState = awaitItem()
+            assertEquals(cityName, cityState.cityName)
+
+
             val errorState = awaitItem()
             assertEquals(errorMessage, errorState.errorMessage)
             assertFalse(errorState.isLoading)
@@ -86,4 +94,25 @@ class HomeViewModelTest {
         }
     }
 
+    @Test
+    fun `getCityName with empty city should not fetch weather`() = runTest {
+        val cityFlow = flowOf("")
+        coEvery { getCityUseCase() } returns cityFlow
+
+        viewModel = HomeViewModel(
+            getCurrentWeatherUseCase,
+            getCityUseCase
+        )
+
+        viewModel.homeState.test {
+            val initialState = awaitItem()
+            assertTrue(initialState.isLoading)
+            assertNull(initialState.cityName)
+
+            val cityState = awaitItem()
+            assertEquals("", cityState.cityName)
+
+        }
+    }
 }
+

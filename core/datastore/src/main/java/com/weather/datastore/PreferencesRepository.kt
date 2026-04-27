@@ -2,9 +2,9 @@ package com.weather.datastore
 
 import kotlinx.coroutines.flow.Flow
 
-interface PreferencesRepository {
+ interface PreferencesRepository {
     suspend fun setCityName(cityName: String)
-     fun getCityName(): Flow<String?>
-     fun isCitySaved(): Flow<Boolean>
+    fun getCityName(): Flow<String>
+    fun isCitySaved(): Flow<Boolean>
 }
 

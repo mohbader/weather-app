@@ -39,11 +39,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configFlavor(this)
 
-                defaultConfig.apply {
-                    targetSdk = libs.targetSdk.toInt()
-                    versionCode = libs.versionCode.toInt()
-                    versionName = libs.versionName
-                }
                 buildFeatures.apply {
                     buildConfig = true
                 }

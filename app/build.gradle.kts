@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    buildFeatures{
+    buildFeatures {
         buildConfig = true
     }
     buildTypes {
@@ -19,7 +19,7 @@ android {
             )
         }
         debug {
-            isMinifyEnabled=false
+            isMinifyEnabled = false
         }
     }
 }
@@ -43,11 +43,15 @@ dependencies {
 
     implementation(libs.hilt.compose.navigation)
 
+    //hilt worker
+    implementation(libs.hilt.work)
+
     //core
     implementation(projects.core.navigation)
     implementation(projects.core.network)
     implementation(projects.core.theme)
     implementation(projects.core.datastore)
+    implementation(projects.core.worker)
 
     //features
     implementation(projects.features.home.presentation)
@@ -58,7 +62,6 @@ dependencies {
     implementation(projects.features.search.domain)
     implementation(projects.features.search.data)
 
-
-
+    implementation(libs.compose.tracing)
 
 }

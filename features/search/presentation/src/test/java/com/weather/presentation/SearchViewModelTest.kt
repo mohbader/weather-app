@@ -4,17 +4,20 @@ import app.cash.turbine.test
 import com.weather.datastore.usecases.SaveCityUseCase
 import com.weather.domain.model.CityModel
 import com.weather.domain.usecase.SearchCityUseCase
+import com.weather.presentation.state.SearchAction
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
 
@@ -43,12 +46,18 @@ class SearchViewModelTest {
 
         coEvery { searchCityUseCase(any()) } returns mockResults
 
-        viewModel.searchCity(cityName)
-        advanceUntilIdle()
+        viewModel.state.test {
+            awaitItem()
 
-        viewModel.searchState.test {
+            viewModel.onAction(SearchAction.OnSearchQueryChange(cityName))
+            assertEquals(cityName, awaitItem().searchQuery)
+
+            advanceTimeBy(501)
+
             val result = awaitItem()
-            assertEquals(mockResults, result)
+            assertEquals(mockResults, result.cities)
+            assertFalse(result.isLoading)
+
         }
     }
 
@@ -60,8 +69,8 @@ class SearchViewModelTest {
 
         viewModel.searchCity("Nowhere")
 
-        viewModel.searchState.test {
-            assertEquals(null, awaitItem())
+        viewModel.state.test {
+            assertEquals(emptyList<CityModel>(), awaitItem().cities)
         }
     }
 

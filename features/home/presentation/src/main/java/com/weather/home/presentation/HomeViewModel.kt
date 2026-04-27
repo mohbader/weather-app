@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.weather.datastore.usecases.GetCityUseCase
 import com.weather.home.domain.model.WeatherRequest
 import com.weather.home.domain.usecase.GetCurrentWeatherUseCase
-import com.weather.home.presentation.state.HomeIntent
+import com.weather.home.presentation.state.HomeAction
 import com.weather.home.presentation.state.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,30 +19,43 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
-    private val getCityUseCase: GetCityUseCase
+    private val getCityUseCase: GetCityUseCase,
 ) : ViewModel() {
 
     private val _homeState = MutableStateFlow(HomeState())
-    var homeState = _homeState.asStateFlow()
+    var homeState = _homeState
+        .onStart {
+            getCityName()
+        }.stateIn(
+            viewModelScope,
+            started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000),
+            _homeState.value
+        )
 
-    private fun processIntent(intent: HomeIntent) {
+    fun onAction(intent: HomeAction) {
         when (intent) {
-            is HomeIntent.GetCity -> getCityName()
-            is HomeIntent.GetWeather -> getWeather(intent.cityName)
-        }
-    }
+            is HomeAction.GetCity -> getCityName()
+            is HomeAction.GetWeather -> getWeather(intent.cityName)
+            is HomeAction.OnTabSelected -> _homeState.update { it.copy(selectedTabIndex = intent.index) }
 
-    init {
-        processIntent(HomeIntent.GetCity)
+        }
     }
 
     private fun getCityName() {
         viewModelScope.launch {
-            _homeState.update { it.copy(isLoading = true) }
-            getCityUseCase().collect { cityName ->
-                _homeState.update { it.copy(cityName = cityName) }
-                processIntent(HomeIntent.GetWeather(cityName.orEmpty()))
-            }
+            getCityUseCase()
+                .catch { exception ->
+                    _homeState.update {
+                        it.copy(
+                            errorMessage = exception.message,
+                            isLoading = false
+                        )
+                    }
+                }
+                .collect { cityName ->
+                    _homeState.update { it.copy(cityName = cityName) }
+                    getWeather(cityName)
+                }
         }
     }
 

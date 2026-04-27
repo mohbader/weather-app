@@ -1,8 +1,3 @@
-import com.my.convention.androidxJunit
-import com.my.convention.junit
-import com.my.convention.junitJupiter
-import com.my.convention.junitJupiterApi
-import com.my.convention.junitJupiterEngine
 import com.my.convention.kotlinxCoroutinesTest
 import com.my.convention.libs
 import com.my.convention.mockk
@@ -26,7 +21,6 @@ class AndroidPresentationConventionPlugin : Plugin<Project> {
                 add("implementation", project(":core:theme"))
                 add("implementation", project(":core:navigation"))
                 add("implementation", project(":core:datastore"))
-
 
                 add("testImplementation", libs.mockk)
                 add("testImplementation", libs.kotlinxCoroutinesTest)

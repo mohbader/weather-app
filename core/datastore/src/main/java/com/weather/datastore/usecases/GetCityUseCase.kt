@@ -8,7 +8,7 @@ class GetCityUseCase @Inject constructor(
     private val preferencesRepository: PreferencesRepository
 ) {
 
-    suspend operator fun invoke(): Flow<String?> {
+     operator fun invoke(): Flow<String> {
         return preferencesRepository.getCityName()
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="select_city">Select City</string>
+    <string name="search_city">Search city</string>
+    <string name="top_cities">Top Cities</string>
+    <string name="no_results_found">No results found</string>
+</resources>

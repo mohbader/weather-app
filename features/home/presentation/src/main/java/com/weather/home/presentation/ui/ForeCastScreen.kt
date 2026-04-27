@@ -20,6 +20,7 @@ fun ForeCastScreen(list: List<WeatherConditionModel>?) {
     ) {
         items(
             list?.size ?: 0,
+            key = { index -> list?.get(index)?.time.orEmpty() }
         ) { index ->
             val item = list?.get(index)
             if (item != null) {

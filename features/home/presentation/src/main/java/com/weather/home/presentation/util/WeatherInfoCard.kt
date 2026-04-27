@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedCard
@@ -22,12 +23,13 @@ import androidx.compose.ui.unit.sp
 import com.weather.home.domain.model.WeatherConditionModel
 
 @Composable
-fun WeatherInfoCard(@StringRes title: Int, value: String,    modifier: Modifier = Modifier
+fun WeatherInfoCard(
+    @StringRes title: Int, value: String, modifier: Modifier = Modifier
 ) {
     OutlinedCard(
         modifier = modifier
-            .fillMaxHeight()
-            .padding(vertical = 4.dp),
+            .height(70.dp)
+            .padding(4.dp),
         border = BorderStroke(1.dp, Color.LightGray),
         shape = RoundedCornerShape(3.dp),
     ) {
