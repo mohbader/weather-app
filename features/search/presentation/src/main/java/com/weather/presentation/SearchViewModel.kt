@@ -12,8 +12,14 @@ import com.weather.presentation.state.SearchState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -29,8 +35,7 @@ class SearchViewModel @Inject constructor(
     private val searchCityUseCase: SearchCityUseCase
 ) : ViewModel() {
 
-    private var cites: List<CityModel> = emptyList()
-    private var searchJob: Job? = null
+    private var cities: List<CityModel> = emptyList()
 
     private val _state = MutableStateFlow(SearchState())
     val state = _state
@@ -52,7 +57,6 @@ class SearchViewModel @Inject constructor(
                     )
                 }
             }
-
             is SearchAction.OnCitySelected -> {
                 saveCity(action.cityName)
             }
@@ -70,26 +74,27 @@ class SearchViewModel @Inject constructor(
 
     private fun observeSearchQuery() {
         state.map { it.searchQuery }
+            .filter { it.isNotEmpty() }
             .distinctUntilChanged()
-            .debounce(500L)
-            .onEach { query ->
-                when {
-                    query.isBlank() -> {
-                        _state.update {
-                            it.copy(
-                                errorMessage = null,
-                                cities = cites
-                            )
+            .debounce(SEARCH_DEBOUNCE_MS)
+            .flatMapLatest { query ->
+                flow<Unit> {
+                    when {
+                        query.isBlank() -> {
+                            _state.update {
+                                it.copy(
+                                    cities = cities
+                                )
+                            }
                         }
-                    }
-
-                    query.length >= 2 -> {
-                        searchJob?.cancel()
-                        searchJob = searchCity(query)
+                        query.length >= MIN_QUERY_LENGTH -> {
+                            searchCity(query)
+                        }
                     }
                 }
             }.launchIn(viewModelScope)
     }
+
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     internal fun searchCity(cityName: String) = viewModelScope.launch {
@@ -115,5 +120,10 @@ class SearchViewModel @Inject constructor(
             }
         }
 
+    }
+
+    private companion object {
+        const val SEARCH_DEBOUNCE_MS = 500L
+        const val MIN_QUERY_LENGTH = 2
     }
 }
